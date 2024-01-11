@@ -23,7 +23,8 @@ def print_board():
 
 # Check for Valid Move
 def is_valid_move(move):
-    return move in state['board']
+    # Make sure they entered a valid square on the board AND that no one has already taken that square
+    return move in state['board'] and state['board'].get(move) == None
 
 # Get Move
 def get_move():
@@ -34,7 +35,7 @@ def get_move():
             print()
 
         move = input(f"Player {state['turn']}'s Move (example B2): ").lower()
-        
+
     return move
 
 # Get Winner
