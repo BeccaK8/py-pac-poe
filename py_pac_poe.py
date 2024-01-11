@@ -21,9 +21,21 @@ def print_board():
     print( f"1)   {state['board']['a3'] if state['board']['a3'] else ' '} | {state['board']['b3'] if state['board']['b3'] else ' '} | {state['board']['c3'] if state['board']['c3'] else ' '} ")
     print()
 
+# Check for Valid Move
+def is_valid_move(move):
+    return move in state['board']
+
 # Get Move
 def get_move():
-    pass
+    move = ""
+    while not is_valid_move(move):
+        if move != "":
+            print("Bogus move! Try again...")
+            print()
+
+        move = input(f"Player {state['turn']}'s Move (example B2): ").lower()
+        
+    return move
 
 # Get Winner
 def get_winner():
@@ -46,8 +58,9 @@ def init_game():
     # Display board
     print_board()
 
+    # Get Move
+    move = get_move()
+    print(f"Next move is {move}")
 
-        # Get Move
-        # move = get_move().lower()
-
+# Run Game    
 init_game()
