@@ -49,10 +49,31 @@ def check_horizontal_win():
     else:
         return None
     
+# Check Vertical Win
+def check_vertical_win():
+    if state['board']['a1'] == state['board']['a2'] and state['board']['a2'] == state['board']['a3']:
+        return state['board']['a1']
+    elif state['board']['b1'] == state['board']['b2'] and state['board']['b2'] == state['board']['b3']:
+        return state['board']['b1']
+    elif state['board']['c1'] == state['board']['c2'] and state['board']['c2'] == state['board']['c3']:
+        return state['board']['c1']
+    else:
+        return None
+    
+# Check Diagonal Win
+def check_diagonal_win():
+    if state['board']['a1'] == state['board']['b2'] and state['board']['b2'] == state['board']['c3']:
+        return state['board']['a1']
+    elif state['board']['c1'] == state['board']['b2'] and state['board']['b2'] == state['board']['a3']:
+        return state['board']['c1']
+    else:
+        return None
+    
+    
 # Get Winner
 def get_winner():
-    print("Horizonal Win = ", check_horizontal_win())
-    return state['count'] == 8 or check_horizontal_win()
+    print("Diagonal Win = ", check_diagonal_win())
+    return state['count'] == 8 or check_horizontal_win() or check_vertical_win() or check_diagonal_win()
 
 # Initialize Game
 def init_game():
