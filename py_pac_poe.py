@@ -84,6 +84,7 @@ def get_winner():
 
 # Initialize Game
 def init_game():
+    
     # Initialize current state of the game
     state['board'] = {
         'a1': None, 'b1': None, 'c1': None,
@@ -91,8 +92,6 @@ def init_game():
         'a3': None, 'b3': None, 'c3': None
     }
     state['turn'] = 'X'
-    state['winner'] = None
-    state['count'] = 0
 
     # Display welcome message
     welcome()
@@ -121,7 +120,7 @@ def init_game():
         print("Another tie!")
     else:
         print(f"Player {winner} wins the game!")
-        
+
     print()
 
 # Run Game    
