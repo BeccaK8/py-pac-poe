@@ -5,6 +5,7 @@ state = {}
 
 # Welcome Message
 def welcome():
+    print()
     print("----------------------")
     print("Let's play Py-Pac-Poe!")
     print("----------------------")
@@ -69,11 +70,17 @@ def check_diagonal_win():
     else:
         return None
     
+# Check Tie
+def check_tie():
+    for square, turn in state['board'].items():
+        if not turn:
+            return None
+    
+    return 'T'
     
 # Get Winner
 def get_winner():
-    print("Diagonal Win = ", check_diagonal_win())
-    return state['count'] == 8 or check_horizontal_win() or check_vertical_win() or check_diagonal_win()
+    return check_horizontal_win() or check_vertical_win() or check_diagonal_win() or check_tie()
 
 # Initialize Game
 def init_game():
@@ -114,6 +121,8 @@ def init_game():
         print("Another tie!")
     else:
         print(f"Player {winner} wins the game!")
+        
+    print()
 
 # Run Game    
 init_game()
