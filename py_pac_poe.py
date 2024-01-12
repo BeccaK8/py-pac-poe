@@ -4,14 +4,21 @@
 state = {}
 
 # Welcome Message
-def welcome():
+def render_welcome_message():
+    print()
+    print("----------------------")
+    print("Welcome to Py-Pac-Poe!")
+    print("----------------------")
+
+# Let's Play Message
+def render_lets_play_message():
     print()
     print("----------------------")
     print("Let's play Py-Pac-Poe!")
     print("----------------------")
 
 # Display Board
-def print_board():
+def render_board():
     print()
     print( "     A   B   C ")
     print()
@@ -93,11 +100,11 @@ def init_game():
     }
     state['turn'] = 'X'
 
-    # Display welcome message
-    welcome()
+    # Display let's play message
+    render_lets_play_message()
 
     # Display board
-    print_board()
+    render_board()
     winner = None
 
     while not winner:
@@ -107,7 +114,7 @@ def init_game():
         state['board'][move] = state['turn']
 
         # Display board
-        print_board()
+        render_board()
 
         # Next Move
         state['turn'] = 'O' if state['turn'] == 'X' else 'X'
@@ -125,31 +132,33 @@ def init_game():
 
 # Check for win_goal
 def met_win_goal(win_goal):
-    return state['series']['X'] == win_goal or state['series']['O'] == win_goal
+    return state['score']['X'] == win_goal or state['score']['O'] == win_goal
 
 # Display score
 def display_score():
     print()
     print("SCORE: ")
-    print(f"Player X: {state['series']['X']}    Player O: {state['series']['O']}    Ties: {state['series']['T']}")
+    print(f"Player X: {state['score']['X']}    Player O: {state['score']['O']}    Ties: {state['score']['T']}")
+    print()
 
 # Initialize Game Series
 def init_game_series():
 
     # Initialize game series variables
-    state['series'] = {
+    state['score'] = {
         'X': 0,
         'O': 0,
         'T': 0
     }
 
     # Prompt user for number of wins to play to
+    render_welcome_message()
     win_goal = int(input("Enter the number of wins to play to: "))
     print(f"Great! We will play until someone gets {win_goal} wins.")
 
     while (not met_win_goal(win_goal)):
         winner = init_game()
-        state['series'][winner] += 1
+        state['score'][winner] += 1
         display_score()
 
 
