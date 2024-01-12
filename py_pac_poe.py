@@ -160,11 +160,13 @@ def init_game_series():
     win_goal = int(input("Enter the number of wins to play to: "))
     print(f"Great! We will play until someone gets {win_goal} wins.")
 
+    # Play games unti someone hits win goal
     while (not met_win_goal(win_goal)):
         winner = init_game()
         state['score'][winner] += 1
         display_score()
 
+    # Display congrats message
     print(f"Congrats to player {get_series_winner(win_goal)} for winning {win_goal} games!")
     print()
 
