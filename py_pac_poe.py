@@ -112,8 +112,6 @@ def init_game():
         # Next Move
         state['turn'] = 'O' if state['turn'] == 'X' else 'X'
 
-        state['count'] += 1
-
         winner = get_winner()
 
     if winner == "T":
@@ -123,5 +121,31 @@ def init_game():
 
     print()
 
-# Run Game    
-init_game()
+    return winner
+
+# Check for win_goal
+def met_win_goal(win_goal):
+    return state['series']['X'] == win_goal or state['series']['O'] == win_goal
+
+# Initialize Game Series
+def init_game_series():
+
+    # Initialize game series variables
+    state['series'] = {
+        'X': 0,
+        'O': 0,
+        'T': 0
+    }
+
+    # Prompt user for number of wins to play to
+    win_goal = int(input("Enter the number of wins to play to: "))
+    print(f"Great! We will play until someone gets {win_goal} wins.")
+
+    while (not met_win_goal(win_goal)):
+        winner = init_game()
+        state['series'][winner] += 1
+
+
+
+# Run Game Series  
+init_game_series()
