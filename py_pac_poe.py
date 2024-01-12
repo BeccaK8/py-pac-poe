@@ -134,6 +134,10 @@ def init_game():
 def met_win_goal(win_goal):
     return state['score']['X'] == win_goal or state['score']['O'] == win_goal
 
+# Get winner of series
+def get_series_winner(win_goal):
+    return 'X' if state['score']['X'] == win_goal else 'O'
+
 # Display score
 def display_score():
     print()
@@ -161,6 +165,8 @@ def init_game_series():
         state['score'][winner] += 1
         display_score()
 
+    print(f"Congrats to player {get_series_winner(win_goal)} for winning {win_goal} games!")
+    print()
 
 
 # Run Game Series  
