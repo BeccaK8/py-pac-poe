@@ -127,6 +127,12 @@ def init_game():
 def met_win_goal(win_goal):
     return state['series']['X'] == win_goal or state['series']['O'] == win_goal
 
+# Display score
+def display_score():
+    print()
+    print("SCORE: ")
+    print(f"Player X: {state['series']['X']}    Player O: {state['series']['O']}    Ties: {state['series']['T']}")
+
 # Initialize Game Series
 def init_game_series():
 
@@ -144,6 +150,7 @@ def init_game_series():
     while (not met_win_goal(win_goal)):
         winner = init_game()
         state['series'][winner] += 1
+        display_score()
 
 
 
